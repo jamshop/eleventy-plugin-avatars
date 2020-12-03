@@ -1,6 +1,6 @@
 {
   "name": "@jamshop/eleventy-plugin-avatars",
-  "version": "0.0.0",    
+  "version": "1.0.0",    
   "license": "MIT",
   "dependencies": {
     "@dicebear/avatars": "^4.4.1",

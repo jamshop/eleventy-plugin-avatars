@@ -10,12 +10,11 @@ const initialsSprites = require("@dicebear/avatars-initials-sprites").default;
 const jdenticonSprites = require("@dicebear/avatars-jdenticon-sprites").default;
 const maleSprites = require("@dicebear/avatars-male-sprites").default;
 
-
 const gravatarAvatar = (gravatarOptions) => (value) => {
   return gravatar.url(value, gravatarOptions);
 };
 
-const githubAvatar = ({ size }={}) => (value) => {
+const githubAvatar = ({ size } = {}) => (value) => {
   return size
     ? `https://github.com/${value}.png?size=${size}`
     : `https://github.com/${value}.png`;
@@ -38,13 +37,11 @@ const diceBearSprites = {
 };
 
 const diceBearAvatars = (options, key) => {
-  console.log(diceBearSprites[key], {})
   let avatars = new Avatars(diceBearSprites[key], options);
   return (value) => avatars.create(value);
 };
 
-
-module.exports = (eleventyConfig, options={}) => {
+module.exports = (eleventyConfig, options = {}) => {
   defaultAvatar = options.default ? options.default : "avataaars";
   eleventyConfig.addFilter("gravatar", gravatarAvatar(options.gravatar));
   eleventyConfig.addFilter("githubAvatar", githubAvatar(options.github));
@@ -53,10 +50,22 @@ module.exports = (eleventyConfig, options={}) => {
     "avataaarsAvatar",
     diceBearAvatars(options.avataaars, "avataaars")
   );
-  eleventyConfig.addFilter("botttsAvatar", diceBearAvatars(options.bottts, "bottts"));
-  eleventyConfig.addFilter("femaleAvatar", diceBearAvatars(options.female, "female"));
-  eleventyConfig.addFilter("gridyAvatar", diceBearAvatars(options.gridy, "gridy"));
-  eleventyConfig.addFilter("humanAvatar", diceBearAvatars(options.human, "human"));
+  eleventyConfig.addFilter(
+    "botttsAvatar",
+    diceBearAvatars(options.bottts, "bottts")
+  );
+  eleventyConfig.addFilter(
+    "femaleAvatar",
+    diceBearAvatars(options.female, "female")
+  );
+  eleventyConfig.addFilter(
+    "gridyAvatar",
+    diceBearAvatars(options.gridy, "gridy")
+  );
+  eleventyConfig.addFilter(
+    "humanAvatar",
+    diceBearAvatars(options.human, "human")
+  );
   eleventyConfig.addFilter(
     "identiconAvatar",
     diceBearAvatars(options.identicon, "identicon")
@@ -66,5 +75,8 @@ module.exports = (eleventyConfig, options={}) => {
     diceBearAvatars(options.jdenticon, "jdenticon")
   );
   eleventyConfig.addFilter("maleAvatar", diceBearAvatars(options.male, "male"));
-  eleventyConfig.addFilter("avatar", diceBearAvatars(options[defaultAvatar], defaultAvatar));
+  eleventyConfig.addFilter(
+    "avatar",
+    diceBearAvatars(options[defaultAvatar], defaultAvatar)
+  );
 };
